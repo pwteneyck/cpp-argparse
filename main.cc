@@ -1,5 +1,6 @@
 #include <iostream>
-#include "argparse.hpp"
+
+#include "argparse.h"
 
 int main(int argc, char* argv[]) {
     // pass in a name to say hello to with the '-n' flag

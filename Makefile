@@ -4,9 +4,9 @@ SRC=src
 OUT=build
 
 lib:
-	@mkdir build/
+	@mkdir -p build/
 	@echo 'Compiling library sources'
-	$(CC) $(CFLAGS) -c $(SRC)/argparse.cpp -o $(OUT)/argparse.o
+	$(CC) $(CFLAGS) -c $(SRC)/argparse.cc -o $(OUT)/argparse.o
 	@echo 'Building library archive'
 	ar rcs $(OUT)/libargparse.a $(OUT)/argparse.o
 	@echo 'Done!'
@@ -14,7 +14,7 @@ lib:
 
 main:
 	@echo 'Compiling main source'
-	$(CC) $(CFLAGS) -I $(SRC)/ -c main.cpp -o $(OUT)/main.o
+	$(CC) $(CFLAGS) -I $(SRC)/ -c main.cc -o $(OUT)/main.o
 	@echo 'Linking'
 	$(CC) $(CFLAGS) $(OUT)/main.o -L $(OUT) -largparse -o main
 

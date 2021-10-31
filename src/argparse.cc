@@ -1,6 +1,7 @@
+#include "argparse.h"
+
 #include <algorithm>
 #include <string>
-#include "argparse.hpp"
 
 char* getCmdValue(char** begin, char** end, const std::string& flag) {
     char** itr = std::find(begin, end, flag);
