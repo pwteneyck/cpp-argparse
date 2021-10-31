@@ -1,21 +1,23 @@
 CC=c++
 CFLAGS=-std=c++17
+SRC=src
+OUT=build
 
 lib:
+	@mkdir build/
 	@echo 'Compiling library sources'
-	$(CC) $(CFLAGS) -c argparse.cpp
+	$(CC) $(CFLAGS) -c $(SRC)/argparse.cpp -o $(OUT)/argparse.o
 	@echo 'Building library archive'
-	ar rcs libargparse.a argparse.o
+	ar rcs $(OUT)/libargparse.a $(OUT)/argparse.o
 	@echo 'Done!'
 	@echo 'Statically link using "c++ -std=c++17 {FILENAME} -L . -largparse -o {OUTPUT}"'
 
 main:
 	@echo 'Compiling main source'
-	$(CC) $(CFLAGS) -c main.cpp
+	$(CC) $(CFLAGS) -I $(SRC)/ -c main.cpp -o $(OUT)/main.o
 	@echo 'Linking'
-	$(CC) $(CFLAGS) main.o -L . -largparse -o main
+	$(CC) $(CFLAGS) $(OUT)/main.o -L $(OUT) -largparse -o main
 
 clean:
-	rm -f *.o
-	rm -f *.a
+	rm -rf $(OUT)
 	rm -f main
